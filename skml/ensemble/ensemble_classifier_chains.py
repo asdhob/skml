@@ -57,7 +57,7 @@ class EnsembleClassifierChain(
         validation.check_X_y(X, y, multi_output=True)
         y = validation.check_array(y, accept_sparse=True)
 
-        for i in range(self.number_of_chains):
+        for i in range(10):
             # the classifier gets cloned internally in classifer chains, so
             # no need to do that here.
             cc = ClassifierChain(self.estimator)
