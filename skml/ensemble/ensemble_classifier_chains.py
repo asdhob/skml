@@ -13,7 +13,7 @@ class EnsembleClassifierChain(
             estimator,
             number_of_chains=10,
             threshold=.5,
-            max_features=0.67):
+            max_features=1.0):
         """
         Ensemble of classifier chains (ECC) trains an ensemble of bagged
         classifier chains. Each chain is trained on a randomly sampled subset
@@ -59,17 +59,15 @@ class EnsembleClassifierChain(
 
         for i in range(self.number_of_chains):
             # the classifier gets cloned internally in classifer chains, so
-            # no need to do that here. okok
+            # no need to do that here.
             cc = ClassifierChain(self.estimator)
 
             no_samples = y.shape[0]
-            no_cols = y.shape[1]
-            shuffled_col_id = np.array(shuffle([i for i in range(no_cols)]))
-             
+
             # create random subset for each chain individually
             idx = random.sample(range(no_samples),
                                 int(no_samples * self.max_features))
-            cc.fit(X[idx, :], y[np.array(idx)[:, None], shuffled_col_id])
+            cc.fit(X[idx, :], y[idx, :])
 
             self.estimators_.append(cc)
 
@@ -94,4 +92,4 @@ class EnsembleClassifierChain(
         W_norm = preds.mean(axis=0)
         out = preds / W_norm
 
-        return (out).astype(float)
+        return (out >= self.threshold).astype(int)
