@@ -99,7 +99,7 @@ class EnsembleClassifierChain(
         """
         validation.check_is_fitted(self, 'estimators_')
 
-        preds = np.array([cc.predict(X) for cc in self.estimators_])
+        preds = np.array([cc.predict_proba(X) for cc in self.estimators_])
 #         preds = np.sum(preds, axis=0)
 #         W_norm = preds.mean(axis=0)
 #         out = preds / W_norm
