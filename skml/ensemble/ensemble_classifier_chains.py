@@ -75,7 +75,7 @@ class EnsembleClassifierChain(
             print(shuffled_col_id)
         
             # create random subset for each chain individually
-            idx = random.sample(range(no_samples),
+            idx = sample(range(no_samples),
                                 int(no_samples * self.max_features))
             print(type(idx))
             print(idx)        
