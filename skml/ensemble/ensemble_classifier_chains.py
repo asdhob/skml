@@ -79,7 +79,7 @@ class EnsembleClassifierChain(
                                 int(no_samples * self.max_features))
             print(type(idx))
             print(idx)        
-            cc.fit(X[idx, :], y[np.array(idx)[:, None].astype(int), shuffled_col_id.astype(int)])
+            cc.fit(X[idx, :], y[np.array(idx)[:, None].astype(int), shuffled_col_id])
 
             self.estimators_.append(cc)
 
