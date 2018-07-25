@@ -3,6 +3,7 @@ import numpy as np
 from sklearn.base import BaseEstimator, MetaEstimatorMixin, ClassifierMixin
 from sklearn.utils import validation
 from random import shuffle
+from random import random
 
 from ..problem_transformation import ClassifierChain
 
@@ -65,7 +66,10 @@ class EnsembleClassifierChain(
 
             no_samples = y.shape[0]
             no_cols = y.shape[1]
-            shuffled_col_id = np.array(shuffle([i for i in range(no_cols)]))
+        
+#            shuffled_col_id = np.array(shuffle([i for i in range(no_cols)]))
+            my_list = range(no_cols)
+            shuffled_col_id = sorted(my_list, key=lambda x: random())
             print(type(shuffled_col_id))
             print(shuffled_col_id)
         
