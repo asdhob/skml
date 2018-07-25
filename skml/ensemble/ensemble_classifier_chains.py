@@ -109,11 +109,11 @@ class EnsembleClassifierChain(
         preds = np.array([cc.predict(X) for cc in self.estimators_])
         #print(preds)
         preds = np.apply_along_axis(func1d=get_best_prob, axis=0,arr=preds)
-#        preds = np.mean(preds, axis=0)
-#         W_norm = preds.mean(axis=0)
-#         out = preds / W_norm
+        preds = np.mean(preds, axis=0)
+        W_norm = preds.mean(axis=0)
+        out = preds / W_norm
         
-#        return (out >= self.threshold).astype(int)
+        return (out >= self.threshold).astype(int)
 
-        return preds
+#        return preds
 
