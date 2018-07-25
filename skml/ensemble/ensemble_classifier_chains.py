@@ -106,7 +106,7 @@ class EnsembleClassifierChain(
                 else:
                         return min(x[x<self.threshold])
 
-        preds = np.array([cc.predict_proba(X) for cc in self.estimators_])
+        preds = np.array([cc.predict(X) for cc in self.estimators_])
         preds = np.apply_along_axis(func1d=get_best_prob, axis=0,arr=preds)
 #        preds = np.mean(preds, axis=0)
 #         W_norm = preds.mean(axis=0)
