@@ -85,6 +85,10 @@ class ClassifierChain(BaseEstimator, MetaEstimatorMixin, ClassifierMixin):
             if i == 0:
                 y_pred = (c.predict_proba(X)).reshape(-1, 1)
             else:
+                print(X.shape)
+                y_pred
+                print(y_pred.shape)
+                
                 stacked = np.hstack((X, y_pred))
                 new_y = c.predict_proba(stacked)
                 y_pred = np.hstack((y_pred, new_y.reshape(-1, 1)))
