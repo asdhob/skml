@@ -4,6 +4,7 @@ from sklearn.base import BaseEstimator, MetaEstimatorMixin, ClassifierMixin
 from sklearn.utils import validation
 from random import shuffle
 from random import random
+from random import sample
 
 from ..problem_transformation import ClassifierChain
 
