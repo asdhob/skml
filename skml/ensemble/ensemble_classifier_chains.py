@@ -70,7 +70,7 @@ class EnsembleClassifierChain(
         
 #            shuffled_col_id = np.array(shuffle([i for i in range(no_cols)]))
             my_list = range(no_cols)
-            shuffled_col_id = sorted(my_list, key=lambda x: random())
+            shuffled_col_id = list(sorted(my_list, key=lambda x: random()))
             print(type(shuffled_col_id))
             print(shuffled_col_id)
         
