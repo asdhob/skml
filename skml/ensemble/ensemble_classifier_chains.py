@@ -104,7 +104,7 @@ class EnsembleClassifierChain(
         W_norm = preds.mean(axis=0)
         out = preds / W_norm
         
-        return (out >= self.threshold).astype(int)
+#        return (out >= self.threshold).astype(int)
 
-#        return (out).astype(float)
+        return out
 
