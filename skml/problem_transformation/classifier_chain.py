@@ -85,6 +85,7 @@ class ClassifierChain(BaseEstimator, MetaEstimatorMixin, ClassifierMixin):
             if i == 0:
                 y_pred = (c.predict_proba(X)).reshape(-1, 1)
             else:
+                print(i)
                 print(X.shape)
                 y_pred
                 print(y_pred.shape)
