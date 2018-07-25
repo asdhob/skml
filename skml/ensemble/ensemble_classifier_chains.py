@@ -70,7 +70,7 @@ class EnsembleClassifierChain(
             # create random subset for each chain individually
             idx = random.sample(range(no_samples),
                                 int(no_samples * self.max_features))
-            cc.fit(X[idx, :], y[np.array(idx)[:, None], shuffled_col_id])
+            cc.fit(X[idx, :], y[np.array(idx)[:, None].astype(int), shuffled_col_id.astype(int)])
 
             self.estimators_.append(cc)
 
