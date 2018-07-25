@@ -90,7 +90,7 @@ class ClassifierChain(BaseEstimator, MetaEstimatorMixin, ClassifierMixin):
                 y_pred
                 print(y_pred.shape)
                 
-                stacked = np.concatenate((X, y_pred[:,None]),axis=1)
+                stacked = np.column_stack((X, y_pred))
                 new_y = c.predict_proba(stacked)
                 y_pred = np.hstack((y_pred, new_y.reshape(-1, 1)))
 
