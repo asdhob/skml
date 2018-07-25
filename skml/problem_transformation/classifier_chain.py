@@ -55,7 +55,7 @@ class ClassifierChain(BaseEstimator, MetaEstimatorMixin, ClassifierMixin):
             # subsequently predicted and appended labels.
             if i == 0:
                 c.fit(X, y[:, 0])
-                y_pred = (c.predict(X)).reshape(-1, 1)
+                y_pred = (c.predict_proba(X)).reshape(-1, 1)
             else:
                 # the classifiers that aren't the first classifiers in the
                 # chain use a transformed version of the features, where
