@@ -100,16 +100,16 @@ class EnsembleClassifierChain(
         validation.check_is_fitted(self, 'estimators_')
         
         # define function for getting max/min freq for 1/0 class
-        def get_best_prob(x):
-                if np.mean(x)>=0.5:
-                        return max(x[x>=self.threshold])
-                else:
-                        return min(x[x<self.threshold])
+#         def get_best_prob(x):
+#                 if np.mean(x)>=0.5:
+#                         return max(x[x>=self.threshold])
+#                 else:
+#                         return min(x[x<self.threshold])
 
         preds = np.array([cc.predict(X) for cc in self.estimators_])
         #print(preds)
-        preds = np.apply_along_axis(func1d=get_best_prob, axis=0,arr=preds)
-        preds = np.mean(preds, axis=0)
+#        preds = np.apply_along_axis(func1d=get_best_prob, axis=0,arr=preds)
+        preds = np.sum(preds, axis=0)
         W_norm = preds.mean(axis=0)
         out = preds / W_norm
         
