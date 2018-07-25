@@ -83,10 +83,10 @@ class ClassifierChain(BaseEstimator, MetaEstimatorMixin, ClassifierMixin):
 
         for i, c in enumerate(self.estimators_):
             if i == 0:
-                y_pred = (c.predict(X)).reshape(-1, 1)
+                y_pred = (c.predict_proba(X)).reshape(-1, 1)
             else:
                 stacked = np.hstack((X, y_pred))
-                new_y = c.predict(stacked)
+                new_y = c.predict_proba(stacked)
                 y_pred = np.hstack((y_pred, new_y.reshape(-1, 1)))
 
         return y_pred
