@@ -55,7 +55,7 @@ class ClassifierChain(BaseEstimator, MetaEstimatorMixin, ClassifierMixin):
             # subsequently predicted and appended labels.
             if i == 0:
                 c.fit(X, y[:, 0])
-                y_pred = (c.predict_proba(X)).reshape(-1, 1)
+                y_pred = (c.predict(X)).reshape(-1, 1)
             else:
                 # the classifiers that aren't the first classifiers in the
                 # chain use a transformed version of the features, where
@@ -83,15 +83,15 @@ class ClassifierChain(BaseEstimator, MetaEstimatorMixin, ClassifierMixin):
 
         for i, c in enumerate(self.estimators_):
             if i == 0:
-                y_pred = (c.predict_proba(X)).reshape(-1, 1)
+                y_pred = (c.predict(X)).reshape(-1, 1)
             else:
-                print(i)
-                print(X.shape)
-                y_pred
-                print(y_pred.shape)
+#                 print(i)
+#                 print(X.shape)
+#                 y_pred
+#                 print(y_pred.shape)
                 
-                stacked = np.column_stack((X, y_pred))
-                new_y = c.predict_proba(stacked)
+                stacked = np.hstack((X, y_pred))
+                new_y = c.predict(stacked)
                 y_pred = np.hstack((y_pred, new_y.reshape(-1, 1)))
 
         return y_pred
